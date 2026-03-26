@@ -23,15 +23,22 @@
 # misc
 .DS_Store
 *.pem
+.env.local.backup
+*.key
+*.crt
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+lerna-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.*.local
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +46,68 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+*.vim
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# OS
+Thumbs.db
+thumbs.db
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+.mongodb/
+local.db
+
+# Logs and temp files
+logs/
+*.log
+tmp/
+temp/
+
+# macOS
+.DS_Store
+.env.*.local
+*.icloud
+
+# Node
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build
+dist/
+.cache/
+
+# IDE Workspace settings
+.vscode/settings.json
+.vscode/launch.json
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS-specific
+.env.production.local
+.env.test.local
+
+# Credentials and secrets
+credentials.json
+secrets.json
+private/
+config/local.js
+

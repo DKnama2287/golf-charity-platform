@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"winningId":{"$numberInt":"1"}},"name":"winningId_1","unique":true},{"v":{"$numberInt":"2"},"key":{"userId":{"$numberInt":"1"}},"name":"userId_1"}],"uuid":"05055a2ba9fc43dd8bcbdea833336d93","collectionName":"winnerverifications","type":"collection"}

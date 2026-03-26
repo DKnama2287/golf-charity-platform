@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"charityId":{"$numberInt":"1"}},"name":"charityId_1"},{"v":{"$numberInt":"2"},"key":{"sourceReference":{"$numberInt":"1"}},"name":"sourceReference_1"}],"uuid":"3bcaf812584544ed85af10ef37704429","collectionName":"donations","type":"collection"}
