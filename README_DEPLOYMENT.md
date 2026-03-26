@@ -222,8 +222,8 @@ NODE_ENV=development
 MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/db
 STRIPE_SECRET_KEY=sk_test_...
 JWT_SECRET=random-secret-here
-ADMIN_EMAIL=admin@local.test
-ADMIN_PASSWORD=Admin@123456
+ADMIN_EMAIL=xxxxxxxxxx
+ADMIN_PASSWORD=xxxxxx
 ```
 
 **Production**
