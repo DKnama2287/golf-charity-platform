@@ -32,11 +32,11 @@ async function requireAdmin() {
 
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ charityId: string }> },
+  context: { params: Promise<{ charityId: string }> },
 ) {
   const auth = await requireAdmin();
   if (auth.error) return auth.error;
-  const { charityId } = await params;
+  const { charityId } = await context.params;
 
   const parsed = schema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {
@@ -72,11 +72,11 @@ export async function PUT(
 
 export async function DELETE(
   _request: Request,
-  { params }: { params: Promise<{ charityId: string }> },
+  context: { params: Promise<{ charityId: string }> },
 ) {
   const auth = await requireAdmin();
   if (auth.error) return auth.error;
-  const { charityId } = await params;
+  const { charityId } = await context.params;
 
   await connectToDatabase();
   await CharityModel.findByIdAndDelete(charityId);

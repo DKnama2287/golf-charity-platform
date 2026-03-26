@@ -13,7 +13,7 @@ const schema = z.object({
 
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ charityId: string }> },
+  context: { params: Promise<{ charityId: string }> },
 ) {
   const parsed = schema.safeParse(await request.json().catch(() => null));
 
@@ -23,7 +23,7 @@ export async function POST(
 
   await connectToDatabase();
 
-  const { charityId } = await params;
+  const { charityId } = await context.params;
   const charity = await CharityModel.findById(charityId);
 
   if (!charity) {

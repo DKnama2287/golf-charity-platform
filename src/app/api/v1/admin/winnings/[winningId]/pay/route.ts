@@ -18,11 +18,11 @@ async function requireAdmin() {
 
 export async function POST(
   _request: Request,
-  { params }: { params: Promise<{ winningId: string }> },
+  context: { params: Promise<{ winningId: string }> },
 ) {
   const auth = await requireAdmin();
   if (auth.error) return auth.error;
-  const { winningId } = await params;
+  const { winningId } = await context.params;
 
   await connectToDatabase();
   const winning = await WinningModel.findById(winningId).lean();

@@ -13,7 +13,7 @@ const schema = z.object({
 
 export async function GET(
   _request: Request,
-  { params }: { params: Promise<{ winningId: string }> },
+  context: { params: Promise<{ winningId: string }> },
 ) {
   const user = await getCurrentAppUser();
 
@@ -21,7 +21,7 @@ export async function GET(
     return errorResponse("Unauthorized", 401);
   }
 
-  const { winningId } = await params;
+  const { winningId } = await context.params;
   await connectToDatabase();
 
   const verification = await WinnerVerificationModel.findOne({
@@ -34,7 +34,7 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ winningId: string }> },
+  context: { params: Promise<{ winningId: string }> },
 ) {
   const user = await getCurrentAppUser();
 
@@ -42,7 +42,7 @@ export async function POST(
     return errorResponse("Unauthorized", 401);
   }
 
-  const { winningId } = await params;
+  const { winningId } = await context.params;
   const parsed = schema.safeParse(await request.json().catch(() => null));
 
   if (!parsed.success) {

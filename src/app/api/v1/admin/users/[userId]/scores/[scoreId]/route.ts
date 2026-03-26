@@ -12,7 +12,7 @@ const schema = z.object({
 
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ userId: string; scoreId: string }> },
+  context: { params: Promise<{ userId: string; scoreId: string }> },
 ) {
   const auth = await requireAdminUser();
 
@@ -30,7 +30,7 @@ export async function PUT(
     return errorResponse("Invalid score payload.", 400, parsed.error.flatten());
   }
 
-  const { userId, scoreId } = await params;
+  const { userId, scoreId } = await context.params;
   await connectToDatabase();
 
   const score = await ScoreModel.findOneAndUpdate(

@@ -4,7 +4,7 @@ import { publishDraw } from "@/lib/services/draw-admin.service";
 
 export async function POST(
   _request: Request,
-  { params }: { params: Promise<{ drawId: string }> },
+  context: { params: Promise<{ drawId: string }> },
 ) {
   const auth = await requireAdminUser();
 
@@ -17,7 +17,7 @@ export async function POST(
   }
 
   try {
-    const { drawId } = await params;
+    const { drawId } = await context.params;
     const { draw, result } = await publishDraw(drawId);
 
     return successResponse(

@@ -12,7 +12,7 @@ const schema = z.object({
 
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ scoreId: string }> },
+  context: { params: Promise<{ scoreId: string }> },
 ) {
   const subscriptionAccess = await requireActiveSubscription();
 
@@ -24,7 +24,7 @@ export async function PUT(
     return errorResponse("An active subscription is required to edit scores.", 403);
   }
 
-  const { scoreId } = await params;
+  const { scoreId } = await context.params;
   const parsed = schema.safeParse(await request.json().catch(() => null));
 
   if (!parsed.success) {
@@ -60,7 +60,7 @@ export async function PUT(
 
 export async function DELETE(
   _request: Request,
-  { params }: { params: Promise<{ scoreId: string }> },
+  context: { params: Promise<{ scoreId: string }> },
 ) {
   const subscriptionAccess = await requireActiveSubscription();
 
@@ -72,7 +72,7 @@ export async function DELETE(
     return errorResponse("An active subscription is required to delete scores.", 403);
   }
 
-  const { scoreId } = await params;
+  const { scoreId } = await context.params;
   await connectToDatabase();
   await ScoreModel.findOneAndDelete({ _id: scoreId, userId: subscriptionAccess.user.id });
   const latestScores = await getLatestFiveScores(subscriptionAccess.user.id);

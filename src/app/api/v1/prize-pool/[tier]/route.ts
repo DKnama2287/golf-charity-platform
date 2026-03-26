@@ -4,12 +4,12 @@ import { PrizePoolConfigModel } from "@/lib/models/prize-pool-config";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { tier: string } }
+  context: { params: Promise<{ tier: string }> }
 ) {
   try {
     await connectToDatabase();
 
-    const { tier } = params;
+    const { tier } = await context.params;
     const body = await request.json();
     const { amount } = body;
 

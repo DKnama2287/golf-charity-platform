@@ -17,7 +17,7 @@ const schema = z.object({
 
 export async function PATCH(
   request: Request,
-  { params }: { params: Promise<{ userId: string }> },
+  context: { params: Promise<{ userId: string }> },
 ) {
   const result = await requireAdminUser();
 
@@ -29,7 +29,7 @@ export async function PATCH(
     return errorResponse("Forbidden", 403);
   }
 
-  const { userId } = await params;
+  const { userId } = await context.params;
   const parsed = schema.safeParse(await request.json().catch(() => null));
 
   if (!parsed.success) {
@@ -62,7 +62,7 @@ export async function PATCH(
 
 export async function GET(
   _request: Request,
-  { params }: { params: Promise<{ userId: string }> },
+  context: { params: Promise<{ userId: string }> },
 ) {
   const result = await requireAdminUser();
 
@@ -74,7 +74,7 @@ export async function GET(
     return errorResponse("Forbidden", 403);
   }
 
-  const { userId } = await params;
+  const { userId } = await context.params;
   await connectToDatabase();
 
   const [user, scores, winnings] = await Promise.all([

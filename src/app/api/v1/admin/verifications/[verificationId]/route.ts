@@ -24,11 +24,11 @@ async function requireAdmin() {
 
 export async function PATCH(
   request: Request,
-  { params }: { params: Promise<{ verificationId: string }> },
+  context: { params: Promise<{ verificationId: string }> },
 ) {
   const auth = await requireAdmin();
   if (auth.error) return auth.error;
-  const { verificationId } = await params;
+  const { verificationId } = await context.params;
 
   const parsed = schema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {
