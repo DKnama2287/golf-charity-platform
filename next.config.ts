@@ -43,27 +43,9 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Force HTTPS in production
+  // Force HTTPS in production (Vercel handles this automatically)
   redirects: async () => {
-    // Only add HTTPS redirect in production
-    if (process.env.NODE_ENV !== "production") {
-      return [];
-    }
-
-    return [
-      {
-        source: "/:path*",
-        destination: "https://:host/:path*",
-        permanent: true,
-        has: [
-          {
-            type: "header",
-            key: "x-forwarded-proto",
-            value: "(?!https)",
-          },
-        ],
-      },
-    ];
+    return [];
   },
 
   // Webpack bundle analysis
